@@ -1,0 +1,140 @@
+﻿<Window x:Class="UMS1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UMS1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="540" Width="960" Background="Black" 
+        WindowStyle="SingleBorderWindow" ResizeMode="CanMinimize">
+    <Window.DataContext>
+        <local:MainWindowVM/>
+    </Window.DataContext>
+    <Grid  OpacityMask="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}">
+        <Grid.Background>
+            <ImageBrush Opacity="0.89" ImageSource="/Background.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="135*"/>
+            <RowDefinition Height="230*"/>
+            <RowDefinition Height="98*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource Heading_text}" Margin="20 20 20 0" Foreground="White">User Management System</TextBlock>
+            <TextBlock Style="{StaticResource SubHeading_text}" Margin="20 10" Foreground="White">"The largest user management system in Sri Lanka"</TextBlock>
+        </StackPanel>
+
+        <Grid Margin="20 20 20 0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource RoundButtonTemplate}"
+                    Margin="10" 
+                    Grid.Column="1" 
+                    Command="{Binding editCommand}" >Edit</Button>
+            <Button Style="{StaticResource RoundButtonTemplate}"
+                    Margin="10" 
+                    Grid.Column="2" 
+                    Command="{Binding RemovePersonCommand}">Delete</Button>
+            <Button Style="{StaticResource RoundButtonTemplate}"
+                    Margin="10" 
+                    Grid.Column="3" 
+                    Command="{Binding addCommand}">Add</Button>
+            <Button Style="{StaticResource RoundButtonTemplate}"
+                    Margin="10" 
+                    Grid.Column="4" 
+                    Command="{Binding detailsCommand}">Details</Button>
+        </Grid>
+
+        <!--<ScrollViewer VerticalAlignment="Center" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" Grid.Row="1" Margin="70 0">
+            --><!--<StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle Grid.Column="0" Style="{StaticResource User_Image_tag}"/>
+                    <Grid Grid.Column="0" Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="160"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Margin="5" Source="{StaticResource User1}"/>
+                        <StackPanel Grid.Row="1">
+                            <TextBlock Margin="5 0 5 0" FontSize="12" FontWeight="Bold">Shavidika Ekanayake</TextBlock>
+                            <TextBlock Margin="5 0" FontSize="9" FontWeight="Regular">shavidika.ekanayake@gmail.com</TextBlock>
+                        </StackPanel>                            
+                    </Grid>
+                    
+                    <Rectangle Grid.Column="1" Style="{StaticResource User_Image_tag}"/>
+                    <Rectangle Grid.Column="2" Style="{StaticResource User_Image_tag}"/>
+                    <Rectangle Grid.Column="3" Style="{StaticResource User_Image_tag}"/>
+                    <Rectangle Grid.Column="4" Style="{StaticResource User_Image_tag}"/>
+                    <Rectangle Grid.Column="5" Style="{StaticResource User_Image_tag}"/>
+
+                </Grid>
+            </StackPanel>--><!--
+            
+        </ScrollViewer>-->
+
+        <ScrollViewer  Grid.Row="1" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" Margin="95 0">
+            <ListView ItemsSource="{Binding Persons, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedUser,UpdateSourceTrigger=PropertyChanged}" Background="Transparent" BorderThickness="0">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<Border BorderBrush="Black" 
+                                BorderThickness="1"
+                                CornerRadius="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImgURL}" Height="30"/>
+                                    <TextBlock Text="{Binding firstName}" Margin="5"/>
+                                    <TextBlock Text="{Binding lastName}" Margin="5"/>
+                                </StackPanel>
+                            </Border>-->
+                        <Grid Background="White" Width="160" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="160"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="{Binding Image, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" Margin="5" Height="150"/>
+                            <TextBlock Grid.Row="1" TextWrapping="NoWrap" Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" Margin="5 0" FontSize="12" FontWeight="Bold"/>
+                            <TextBlock Margin="5 0" FontSize="9" Grid.Row="2" FontWeight="Regular" Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                        <!--<Grid Margin="20">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="160"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" Margin="5" Source="{StaticResource User1}"/>
+                                <StackPanel Grid.Row="1">
+                                    <TextBlock Margin="5 0 5 0" FontSize="12" FontWeight="Bold">Shavidika Ekanayake</TextBlock>
+                                    <TextBlock Margin="5 0" FontSize="9" FontWeight="Regular">shavidika.ekanayake@gmail.com</TextBlock>
+                                </StackPanel>
+                            </Grid>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

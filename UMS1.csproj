@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Background.png" />
+    <None Remove="Images\1.png" />
+    <None Remove="Images\2.png" />
+    <None Remove="Images\3.png" />
+    <None Remove="Images\4.png" />
+    <None Remove="Images\5.png" />
+    <None Remove="Images\add_image.png" />
+    <None Remove="Images\Background.png" />
+    <None Remove="Images\Shavidika Ekanayake.jpg" />
+    <None Remove="Images\z_pBus-iii-University-02.jpg" />
+    <None Remove="Shavidika Ekanayake.jpg" />
+    <None Remove="z_pBus-iii-University-02.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Background.png" />
+    <Resource Include="Images\1.png" />
+    <Resource Include="Images\2.png" />
+    <Resource Include="Images\3.png" />
+    <Resource Include="Images\4.png" />
+    <Resource Include="Images\5.png" />
+    <Resource Include="Images\add_image.png" />
+    <Resource Include="Images\Background.png" />
+    <Resource Include="Images\Shavidika Ekanayake.jpg" />
+    <Resource Include="Images\z_pBus-iii-University-02.jpg" />
+    <Resource Include="Shavidika Ekanayake.jpg" />
+    <Resource Include="z_pBus-iii-University-02.jpg" />
+  </ItemGroup>
+
+</Project>
